@@ -1,7 +1,7 @@
 import { userParamsSlice } from "./userParams";
-import userReducer from "./userParams"
+import userParamsReducer from "./userParams"
 
 export {
 	userParamsSlice,
-	userReducer
+	userParamsReducer
 }
