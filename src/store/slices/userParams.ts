@@ -1,41 +1,49 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface GithubTypes {
+	onPush: boolean;
+	onPullRequest: boolean;
+	onReviewAssigned: boolean;
+}
 
 export interface InitialState {
-  repoName: string,
-	branchName: string,
-	installCmd: string,
-	buildCmd: string,
+	repoName: string;
+	branchName: string;
+	updateOn: GithubTypes;
+	installCmd: string;
+	buildCmd: string;
 }
+
+interface UpdateTextType {
+	key: "repoName" | "branchName" | "installCmd" | "buildCmd";
+	value: string;
+}
+
+const initialGithub: GithubTypes = {
+	onPush: false,
+	onPullRequest: false,
+	onReviewAssigned: false,
+};
 
 const initialState: InitialState = {
-  repoName: '',
-	branchName: '',
-	installCmd: 'npm i',
-	buildCmd: 'npm run build',
-
-}
+	repoName: "",
+	branchName: "",
+	updateOn: initialGithub,
+	installCmd: "npm i",
+	buildCmd: "npm run build",
+};
 
 export const userParamsSlice = createSlice({
-  name: 'userParams',
-  initialState,
-  reducers: {
-		// Redux Toolkit allows us to write "mutating" logic in reducers. It
-		// doesn't actually mutate the state because it uses the Immer library,
-		// which detects changes to a "draft state" and produces a brand new
-		// immutable state based off those changes
-
-    // increment: (state) => {
-    //   state.value += 1
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
-		
-  },
+	name: "userParams",
+	initialState,
+	reducers: {
+		updateText: (state, action: PayloadAction<UpdateTextType>) => {
+			state[action.payload.key] = action.payload.value;
+		},
+	},
 });
 
+// Action creators are generated for each case reducer function
+export const { updateText } = userParamsSlice.actions;
 
-export default userParamsSlice.reducer
+export default userParamsSlice.reducer;
