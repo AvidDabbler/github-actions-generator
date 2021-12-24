@@ -1,26 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	return (
+		<div className="w-full h-screen m-auto p-12 bg-blue-200">
+			<div className="w-full h-full m-auto p-12 bg-blue-300 text-4xl font-bold underline">
+				<h2 className="m-auto text-center">Let's generate a Github Action</h2>
+			</div>
+		</div>
+	);
 }
-
-export default App;
