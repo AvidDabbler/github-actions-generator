@@ -1,15 +1,28 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { updateText } from "../store/actions";
+import { AWSParams, RepoParams } from "../types";
 
-interface ButtonPropsType {
+interface TextBoxTypes {
 	label: string;
-	action: Function;
-	stateValue: string;
+	type: string;
+	stateValue: RepoParams | AWSParams;
 }
 
-export const TextBox = ({ label, action, stateValue }: ButtonPropsType) => {
+export const TextBox = ({ type, label, stateValue }: TextBoxTypes) => {
 	const dispatch = useDispatch();
 	return (
-		<input name={label} type="text" className={``} value={stateValue}></input>
+		<label className="flex flex-col mx-auto my-5 w-2/3">
+			<span className="m-auto">{label}</span>
+			<input
+				required={true}
+				className=" mx-auto p-3 w-full"
+				type={type}
+				name={label}
+				onChange={(e) =>
+					dispatch(updateText({ key: stateValue, value: e.target.value }))
+				}
+			/>
+		</label>
 	);
 };

@@ -6,11 +6,6 @@ import {
 	SwitchBooleanType,
 } from "../../types";
 
-// interface UpdateArrayType {
-// 	key: "branchesName" | "ignoreBranchesName";
-// 	value: Array<string>;
-// }
-
 const initialGithub: GithubTypes = {
 	onPush: false,
 	onPullRequest: false,
@@ -20,9 +15,11 @@ const initialGithub: GithubTypes = {
 const initialState: InitialState = {
 	repoName: "",
 	branchName: "",
+	s3Location: "",
 	on: initialGithub,
 	installCmd: "npm i",
 	buildCmd: "npm run build",
+	page: "/",
 };
 
 export const userParamsSlice = createSlice({
@@ -35,10 +32,14 @@ export const userParamsSlice = createSlice({
 		switchBoolean: (state, action: PayloadAction<SwitchBooleanType>) => {
 			state.on[action.payload.key] = !state.on[action.payload.key];
 		},
+		switchPage: (state, action: PayloadAction<string>) => {
+			state.page = action.payload;
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { updateText, switchBoolean } = userParamsSlice.actions;
+export const { updateText, switchBoolean, switchPage } =
+	userParamsSlice.actions;
 
 export default userParamsSlice.reducer;

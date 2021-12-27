@@ -1,3 +1,3 @@
-import { updateText, switchBoolean } from "./slices/userParams";
+import { updateText, switchBoolean, switchPage } from "./slices/userParams";
 
-export { updateText, switchBoolean };
+export { updateText, switchBoolean, switchPage };
