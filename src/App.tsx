@@ -43,10 +43,7 @@ export default function App() {
 					<div className="w-100 flex flex-row">
 						<Button actionKey="onPush" text={"Push"} />
 						<Button actionKey="onPullRequest" text={"Pull Request"} />
-						{/* <Button
-              key='onReview'
-							text={"Review Assigned"}
-						/> */}
+						<Button actionKey="onReviewAssigned" text={"Review Assigned"} />
 					</div>
 				</div>
 			</div>
