@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userParamsReducer } from "./slices";
+import { colorReducer, userParamsReducer } from "./slices";
 
 export const store = configureStore({
 	reducer: {
 		userParams: userParamsReducer,
+		colorParams: colorReducer,
 	},
 });
 

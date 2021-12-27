@@ -1,23 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+	GithubTypes,
+	InitialState,
+	UpdateTextType,
+	SwitchBooleanType,
+} from "../../types";
 
-interface GithubTypes {
-	onPush: boolean;
-	onPullRequest: boolean;
-	onReviewAssigned: boolean;
-}
-
-export interface InitialState {
-	repoName: string;
-	branchName: string;
-	updateOn: GithubTypes;
-	installCmd: string;
-	buildCmd: string;
-}
-
-interface UpdateTextType {
-	key: "repoName" | "branchName" | "installCmd" | "buildCmd";
-	value: string;
-}
+// interface UpdateArrayType {
+// 	key: "branchesName" | "ignoreBranchesName";
+// 	value: Array<string>;
+// }
 
 const initialGithub: GithubTypes = {
 	onPush: false,
@@ -28,22 +20,25 @@ const initialGithub: GithubTypes = {
 const initialState: InitialState = {
 	repoName: "",
 	branchName: "",
-	updateOn: initialGithub,
+	on: initialGithub,
 	installCmd: "npm i",
 	buildCmd: "npm run build",
 };
 
 export const userParamsSlice = createSlice({
 	name: "userParams",
-	initialState,
+	initialState: initialState,
 	reducers: {
 		updateText: (state, action: PayloadAction<UpdateTextType>) => {
 			state[action.payload.key] = action.payload.value;
+		},
+		switchBoolean: (state, action: PayloadAction<SwitchBooleanType>) => {
+			state.on[action.payload.key] = !state.on[action.payload.key];
 		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { updateText } = userParamsSlice.actions;
+export const { updateText, switchBoolean } = userParamsSlice.actions;
 
 export default userParamsSlice.reducer;
